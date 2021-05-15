@@ -1,35 +1,18 @@
 #include <Arduino.h>
 #include <Wire.h>
-#include "Adafruit_MCP23017.h"
-
-Adafruit_MCP23017 mcpp23017;
-
+#include "Light.h"
+#include "InternalController.h"
+#include "FlutterBlue.h"
 void setup()
 {
     Serial.begin(115200);
     delay(10);
+    setupLight();
+    setupInternalController();
 
-    mcpp23017.begin();
-
-    for (int i = 0; i < 16; i++)
-    {
-        mcpp23017.pinMode(i, OUTPUT);
-    }
+    setupFlutterBlue();
 }
 
 void loop()
 {
-    for (int i = 0; i < 16; i++)
-    {
-        mcpp23017.digitalWrite(i, HIGH);
-    }
-
-    delay(100);
-
-    for (int i = 0; i < 16; i++)
-    {
-        mcpp23017.digitalWrite(i, LOW);
-    }
-
-    delay(100);
 }
